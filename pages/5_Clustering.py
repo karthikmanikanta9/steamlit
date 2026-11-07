@@ -9,7 +9,9 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-import streamlit as st\n\nfrom src.ui import chart_template, init_page_ui
+import streamlit as st
+
+from src.ui import chart_template, init_page_ui
 
 from src.clustering import cluster_sizes, clusters_to_index_map, cut_mst_edges
 from src.knn_graph import bfs_neighbourhood, induced_subgraph, neighbour_lists
@@ -22,7 +24,9 @@ st.set_page_config(
     page_title="Clustering | MST Text Clustering",
     page_icon="🌳",
     layout="wide",
-)\n\ninit_page_ui("Clustering")
+)
+
+init_page_ui("Clustering")
 
 st.title("MST-Based Clustering")
 st.caption(
