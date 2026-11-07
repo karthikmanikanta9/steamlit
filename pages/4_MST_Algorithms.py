@@ -1,7 +1,9 @@
 import numpy as np
 import pandas as pd
 import plotly.express as px
-import streamlit as st\n\nfrom src.ui import chart_template, init_page_ui
+import streamlit as st
+
+from src.ui import chart_template, init_page_ui
 
 from src import config
 from src.benchmark import run_and_validate
@@ -16,7 +18,9 @@ from src.mst_validation import all_passed, compare_results, scipy_reference_weig
 from src.state import get_dataset, get_embeddings, get_graphs
 from src.visuals import network_figure, pca_layout
 
-st.set_page_config(page_title="MST Algorithms | MST Text Clustering", page_icon="🌳", layout="wide")\n\ninit_page_ui("MST Algorithms")
+st.set_page_config(page_title="MST Algorithms | MST Text Clustering", page_icon="🌳", layout="wide")
+
+init_page_ui("MST Algorithms")
 
 st.title("MST Algorithms")
 st.caption("Prim, Kruskal and Borůvka, written from scratch and run on the same graph.")
