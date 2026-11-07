@@ -54,8 +54,7 @@ jobs:
 
           app = AppTest.from_file("app.py", default_timeout=30).run()
           if app.exception:
-              details = "\\n".join(str(item.message) for item in app.exception)
-              raise SystemExit(f"Dashboard smoke test failed:\\n{details}")
+              raise SystemExit("Dashboard smoke test failed. Check the captured exception details.")
           print("Dashboard entry point loaded without Streamlit exceptions.")
           PY
 
