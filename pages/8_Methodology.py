@@ -3,13 +3,17 @@
 Static explanation of the research question, design decisions,
 and experimental limitations.
 """
-import streamlit as st\n\nfrom src.ui import chart_template, init_page_ui
+import streamlit as st
+
+from src.ui import chart_template, init_page_ui
 
 st.set_page_config(
     page_title="Methodology | MST Text Clustering",
     page_icon="🌳",
     layout="wide",
-)\n\ninit_page_ui("Methodology")
+)
+
+init_page_ui("Methodology")
 
 st.title("Methodology & About")
 st.caption("Design and Analysis of Algorithms — MST-Based Clustering of Text Embeddings")
