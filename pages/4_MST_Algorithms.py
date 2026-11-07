@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import plotly.express as px
-import streamlit as st
+import streamlit as st\n\nfrom src.ui import chart_template, init_page_ui
 
 from src import config
 from src.benchmark import run_and_validate
@@ -16,7 +16,7 @@ from src.mst_validation import all_passed, compare_results, scipy_reference_weig
 from src.state import get_dataset, get_embeddings, get_graphs
 from src.visuals import network_figure, pca_layout
 
-st.set_page_config(page_title="MST Algorithms | MST Text Clustering", page_icon="🌳", layout="wide")
+st.set_page_config(page_title="MST Algorithms | MST Text Clustering", page_icon="🌳", layout="wide")\n\ninit_page_ui("MST Algorithms")
 
 st.title("MST Algorithms")
 st.caption("Prim, Kruskal and Borůvka, written from scratch and run on the same graph.")
@@ -143,7 +143,7 @@ else:
 
     first = next(iter(results.values())).result
     weights = graph.w[first.edge_ids]
-    hist = px.histogram(x=weights, nbins=50, template="plotly_dark",
+    hist = px.histogram(x=weights, nbins=50, template=chart_template(),
                         labels={"x": "Edge weight (cosine distance)", "y": "Number of MST edges"})
     hist.update_traces(marker_color="#22D3EE")
     hist.update_layout(height=320, margin=dict(l=10, r=10, t=10, b=10), showlegend=False)
