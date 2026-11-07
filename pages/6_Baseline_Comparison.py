@@ -12,7 +12,9 @@ assignments against the AG News ground-truth labels.
 import numpy as np
 import pandas as pd
 import plotly.express as px
-import streamlit as st\n\nfrom src.ui import chart_template, init_page_ui
+import streamlit as st
+
+from src.ui import chart_template, init_page_ui
 
 from src import config
 from src.baselines import run_hdbscan, run_kmeans
@@ -24,7 +26,9 @@ st.set_page_config(
     page_title="Baseline Comparison | MST Text Clustering",
     page_icon="🌳",
     layout="wide",
-)\n\ninit_page_ui("Baseline Comparison")
+)
+
+init_page_ui("Baseline Comparison")
 
 st.title("Baseline Comparison")
 st.caption(
