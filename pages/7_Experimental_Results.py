@@ -10,7 +10,9 @@ import io
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-import streamlit as st\n\nfrom src.ui import chart_template, init_page_ui
+import streamlit as st
+
+from src.ui import chart_template, init_page_ui
 
 from src import config
 from src.dense_vs_knn import run_experiment_c
@@ -25,7 +27,9 @@ st.set_page_config(
     page_title="Experimental Results | MST Text Clustering",
     page_icon="🌳",
     layout="wide",
-)\n\ninit_page_ui("Experimental Results")
+)
+
+init_page_ui("Experimental Results")
 
 st.title("Experimental Results & Benchmarks")
 st.caption(
