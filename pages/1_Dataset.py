@@ -1,11 +1,15 @@
 import pandas as pd
 import plotly.express as px
-import streamlit as st\n\nfrom src.ui import chart_template, init_page_ui
+import streamlit as st
+
+from src.ui import chart_template, init_page_ui
 
 from src import config
 from src.data_loader import create_and_save_subset, load_saved_subset, validate_subset
 
-st.set_page_config(page_title="Dataset | MST Text Clustering", page_icon="🌳", layout="wide")\n\ninit_page_ui("Dataset")
+st.set_page_config(page_title="Dataset | MST Text Clustering", page_icon="🌳", layout="wide")
+
+init_page_ui("Dataset")
 
 st.title("Dataset")
 st.caption("AG News: a balanced subset of news articles with four topics.")
