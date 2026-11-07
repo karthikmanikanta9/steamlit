@@ -14,6 +14,8 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+from src.ui import chart_template, init_page_ui
+
 from src import config
 from src.baselines import run_hdbscan, run_kmeans
 from src.evaluation import evaluate_all
@@ -25,6 +27,8 @@ st.set_page_config(
     page_icon="🌳",
     layout="wide",
 )
+
+init_page_ui("Baseline Comparison")
 
 st.title("Baseline Comparison")
 st.caption(
@@ -94,7 +98,7 @@ if "km_labels" in st.session_state:
     })
     fig_km = px.bar(
         km_sizes_df, x="Cluster", y="Documents",
-        text="Documents", template="plotly_dark",
+        text="Documents", template=chart_template(),
         title="K-means — Cluster sizes",
     )
     fig_km.update_traces(marker_color="#22D3EE", textposition="outside")
@@ -168,7 +172,7 @@ if "hd_labels" in st.session_state:
         })
         fig_hd = px.bar(
             hd_sizes_df, x="Cluster", y="Documents",
-            text="Documents", template="plotly_dark",
+            text="Documents", template=chart_template(),
             title="HDBSCAN — Cluster sizes (noise excluded)",
         )
         fig_hd.update_traces(marker_color="#A78BFA", textposition="outside")
@@ -234,7 +238,7 @@ if rows:
                 var_name="Metric", value_name="Score",
             ),
             x="Metric", y="Score", color="Method",
-            barmode="group", template="plotly_dark",
+            barmode="group", template=chart_template(),
             title="Clustering quality comparison",
             color_discrete_sequence=["#22D3EE", "#F59E0B", "#A78BFA"],
         )

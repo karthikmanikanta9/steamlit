@@ -2,6 +2,8 @@
 import numpy as np
 import plotly.graph_objects as go
 
+from src.ui import chart_template
+
 
 def pca_layout(vectors) -> np.ndarray:
     """2-D positions from the first two principal components (deterministic)."""
@@ -43,7 +45,7 @@ def network_figure(coords, edges, highlight=None, node_colors="#22D3EE",
         x=coords[:, 0], y=coords[:, 1], mode="markers",
         marker=dict(size=node_size, color=node_colors, line=dict(width=1, color="#0B1220")),
         hovertext=node_hover, hoverinfo="text" if node_hover is not None else "skip"))
-    fig.update_layout(template="plotly_dark", showlegend=False, height=height,
+    fig.update_layout(template=chart_template(), showlegend=False, height=height,
                       margin=dict(l=10, r=10, t=10, b=10),
                       xaxis=dict(visible=False), yaxis=dict(visible=False, scaleanchor="x"))
     return fig

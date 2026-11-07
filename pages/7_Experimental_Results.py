@@ -12,6 +12,8 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
+from src.ui import chart_template, init_page_ui
+
 from src import config
 from src.dense_vs_knn import run_experiment_c
 from src.experiment_store import (
@@ -26,6 +28,8 @@ st.set_page_config(
     page_icon="🌳",
     layout="wide",
 )
+
+init_page_ui("Experimental Results")
 
 st.title("Experimental Results & Benchmarks")
 st.caption(
@@ -103,7 +107,7 @@ with tab_history:
                 fig_time = px.bar(
                     pd.DataFrame(mst_time_rows),
                     x="k", y="MST time (ms)", color="Algorithm",
-                    barmode="group", template="plotly_dark",
+                    barmode="group", template=chart_template(),
                     title="MST execution time (ms) by k",
                     color_discrete_sequence=["#22D3EE", "#F59E0B", "#A78BFA"],
                 )
@@ -120,7 +124,7 @@ with tab_history:
                 fig_mem = px.bar(
                     pd.DataFrame(mem_rows),
                     x="k", y="Memory (MB)", color="Algorithm",
-                    barmode="group", template="plotly_dark",
+                    barmode="group", template=chart_template(),
                     title="Peak memory (MB) during MST execution",
                     color_discrete_sequence=["#22D3EE", "#F59E0B", "#A78BFA"],
                 )
@@ -144,7 +148,7 @@ with tab_history:
                     pd.DataFrame(qual_rows),
                     x="k", y="Score", color="Metric",
                     facet_col="Algorithm", barmode="group",
-                    template="plotly_dark",
+                    template=chart_template(),
                     title="Clustering quality metrics by k and algorithm",
                     color_discrete_sequence=["#22D3EE", "#F59E0B", "#A78BFA"],
                 )
@@ -163,7 +167,7 @@ with tab_history:
                 fig_wt = px.bar(
                     pd.DataFrame(wt_rows),
                     x="k", y="MST weight", color="Algorithm",
-                    barmode="group", template="plotly_dark",
+                    barmode="group", template=chart_template(),
                     title="Total MST weight (should agree across algorithms on the same graph)",
                     color_discrete_sequence=["#22D3EE", "#F59E0B", "#A78BFA"],
                 )
@@ -200,7 +204,7 @@ with tab_history:
                 fig_bl = px.bar(
                     melt.dropna(subset=["Score"]),
                     x="Metric", y="Score", color="Method",
-                    barmode="group", template="plotly_dark",
+                    barmode="group", template=chart_template(),
                     title="MST-based clustering vs. Independent Baselines",
                     color_discrete_sequence=["#22D3EE", "#F59E0B", "#A78BFA"],
                 )
@@ -306,7 +310,7 @@ with tab_dense:
         ))
         fig_edges.update_layout(
             barmode="group",
-            template="plotly_dark",
+            template=chart_template(),
             title="Edge Count: Complete Graph vs. Sparse kNN Graph (Log scale)",
             yaxis_type="log",
             height=380,
@@ -332,7 +336,7 @@ with tab_dense:
             line=dict(color="#22D3EE", width=3),
         ))
         fig_mst_time.update_layout(
-            template="plotly_dark",
+            template=chart_template(),
             title=f"{algo_choice} MST Runtime (ms)",
             xaxis_title="Sample size (n)",
             yaxis_title="Median runtime (ms)",
@@ -358,7 +362,7 @@ with tab_dense:
             line=dict(color="#34D399", width=3),
         ))
         fig_build.update_layout(
-            template="plotly_dark",
+            template=chart_template(),
             title="Graph Construction Time (s)",
             xaxis_title="Sample size (n)",
             yaxis_title="Time (seconds)",

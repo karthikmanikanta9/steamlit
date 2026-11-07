@@ -6,6 +6,8 @@ from __future__ import annotations
 
 import streamlit as st
 
+from src.ui import chart_template, init_page_ui
+
 from src import config
 from src.data_loader import load_saved_subset
 from src.embeddings import read_embeddings_meta
@@ -19,24 +21,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# ── Sidebar Branding ──────────────────────────────────────────────────────────
-with st.sidebar:
-    st.markdown("### 🌳 MST Text Clustering")
-    st.caption("Design & Analysis of Algorithms Project")
-    st.markdown("---")
-    st.markdown("**Navigation Guide**")
-    st.markdown("""
-    1. **Dataset**: Balance 3,000 AG News articles
-    2. **Embeddings**: MiniLM 384-D vectors
-    3. **kNN Graph**: Exact cosine similarity graph
-    4. **MST Algorithms**: Prim vs. Kruskal vs. Borůvka
-    5. **Clustering**: Size-constrained edge-cutting
-    6. **Baseline Comparison**: K-means & HDBSCAN
-    7. **Experimental Results**: Metrics, history & Exp C
-    8. **Methodology**: Detailed theoretical foundations
-    """)
-    st.markdown("---")
-    st.caption("SRM University-AP • DAA Coursework")
+init_page_ui("Overview")
 
 # ── Header & Academic Context ─────────────────────────────────────────────────
 st.title("MST-Based Clustering of Text Embeddings")

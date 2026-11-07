@@ -5,11 +5,15 @@ and experimental limitations.
 """
 import streamlit as st
 
+from src.ui import chart_template, init_page_ui
+
 st.set_page_config(
     page_title="Methodology | MST Text Clustering",
     page_icon="🌳",
     layout="wide",
 )
+
+init_page_ui("Methodology")
 
 st.title("Methodology & About")
 st.caption("Design and Analysis of Algorithms — MST-Based Clustering of Text Embeddings")

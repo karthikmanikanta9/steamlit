@@ -11,6 +11,8 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
+from src.ui import chart_template, init_page_ui
+
 from src.clustering import cluster_sizes, clusters_to_index_map, cut_mst_edges
 from src.knn_graph import bfs_neighbourhood, induced_subgraph, neighbour_lists
 from src import config
@@ -23,6 +25,8 @@ st.set_page_config(
     page_icon="🌳",
     layout="wide",
 )
+
+init_page_ui("Clustering")
 
 st.title("MST-Based Clustering")
 st.caption(
@@ -169,7 +173,7 @@ sizes_df = pd.DataFrame(
 )
 fig_bar = px.bar(
     sizes_df, x="Cluster", y="Documents",
-    text="Documents", template="plotly_dark",
+    text="Documents", template=chart_template(),
     title="Documents per Cluster",
 )
 fig_bar.update_traces(marker_color="#22D3EE", textposition="outside")
@@ -200,7 +204,7 @@ if dist_rows:
     dist_df = pd.DataFrame(dist_rows)
     fig_heat = px.bar(
         dist_df, x="Cluster", y="Documents", color="Topic",
-        barmode="stack", template="plotly_dark",
+        barmode="stack", template=chart_template(),
         title="Topic mix per cluster (evaluation only — labels not used in clustering)",
         color_discrete_sequence=px.colors.qualitative.Set2,
     )

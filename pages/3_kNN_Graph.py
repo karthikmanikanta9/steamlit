@@ -1,6 +1,8 @@
 import pandas as pd
 import streamlit as st
 
+from src.ui import chart_template, init_page_ui
+
 from src import config
 from src.embeddings import most_similar
 from src.knn_graph import (
@@ -15,6 +17,8 @@ from src.state import get_dataset, get_embeddings, get_graphs
 from src.visuals import network_figure, pca_layout
 
 st.set_page_config(page_title="kNN Graph | MST Text Clustering", page_icon="🌳", layout="wide")
+
+init_page_ui("kNN Graph")
 
 st.title("kNN Graph Explorer")
 st.caption("Every document is linked to the documents whose meaning is closest to it.")
