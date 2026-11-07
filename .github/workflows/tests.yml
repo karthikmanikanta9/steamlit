@@ -20,18 +20,23 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
 
       - name: Set up Python 3.14
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7.1.0
         with:
           python-version: "3.14"
           cache: "pip"
 
-      - name: Install test dependencies
+      - name: Install test and app smoke-test dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install numpy pandas scipy scikit-learn pytest
+          python -m pip install numpy pandas scipy scikit-learn pytest streamlit plotly
+
+      - name: Record test environment
+        run: |
+          python --version
+          python -m pip freeze
 
       - name: Compile application and source files
         run: python -m compileall -q app.py src pages
@@ -42,9 +47,21 @@ jobs:
           set -o pipefail
           python -m pytest -v --junitxml=pytest-results.xml | tee pytest-output.txt
 
+      - name: Smoke-test the Streamlit dashboard entry point
+        run: |
+          python - <<'PY'
+          from streamlit.testing.v1 import AppTest
+
+          app = AppTest.from_file("app.py", default_timeout=30).run()
+          if app.exception:
+              details = "\\n".join(str(item.message) for item in app.exception)
+              raise SystemExit(f"Dashboard smoke test failed:\\n{details}")
+          print("Dashboard entry point loaded without Streamlit exceptions.")
+          PY
+
       - name: Upload test evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: python-3.14-test-evidence
           path: |
