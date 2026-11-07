@@ -4,7 +4,9 @@ Academic Dashboard & Experimental Platform (DAA Project).
 """
 from __future__ import annotations
 
-import streamlit as st\n\nfrom src.ui import chart_template, init_page_ui
+import streamlit as st
+
+from src.ui import chart_template, init_page_ui
 
 from src import config
 from src.data_loader import load_saved_subset
@@ -17,7 +19,9 @@ st.set_page_config(
     page_icon="🌳",
     layout="wide",
     initial_sidebar_state="expanded",
-)\n\ninit_page_ui("Overview")
+)
+
+init_page_ui("Overview")
 
 # ── Header & Academic Context ─────────────────────────────────────────────────
 st.title("MST-Based Clustering of Text Embeddings")
