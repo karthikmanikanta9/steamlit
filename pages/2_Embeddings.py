@@ -1,5 +1,5 @@
 import pandas as pd
-import streamlit as st
+import streamlit as st\n\nfrom src.ui import chart_template, init_page_ui
 
 from src import config
 from src.data_loader import load_saved_subset
@@ -11,7 +11,7 @@ from src.embeddings import (
     validate_embeddings,
 )
 
-st.set_page_config(page_title="Embeddings | MST Text Clustering", page_icon="🌳", layout="wide")
+st.set_page_config(page_title="Embeddings | MST Text Clustering", page_icon="🌳", layout="wide")\n\ninit_page_ui("Embeddings")
 
 st.title("Embeddings")
 st.caption("Each article is turned into a list of numbers (a vector) that captures its meaning.")
