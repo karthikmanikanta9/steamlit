@@ -1,11 +1,11 @@
 import pandas as pd
 import plotly.express as px
-import streamlit as st
+import streamlit as st\n\nfrom src.ui import chart_template, init_page_ui
 
 from src import config
 from src.data_loader import create_and_save_subset, load_saved_subset, validate_subset
 
-st.set_page_config(page_title="Dataset | MST Text Clustering", page_icon="🌳", layout="wide")
+st.set_page_config(page_title="Dataset | MST Text Clustering", page_icon="🌳", layout="wide")\n\ninit_page_ui("Dataset")
 
 st.title("Dataset")
 st.caption("AG News: a balanced subset of news articles with four topics.")
@@ -68,7 +68,7 @@ counts = (
     .reset_index(name="Documents")
 )
 left, right = st.columns([2, 1])
-fig = px.bar(counts, x="Class", y="Documents", text="Documents", template="plotly_dark")
+fig = px.bar(counts, x="Class", y="Documents", text="Documents", template=chart_template())
 fig.update_traces(marker_color="#22D3EE", textposition="outside")
 fig.update_layout(yaxis_range=[0, counts["Documents"].max() * 1.15])
 left.plotly_chart(fig)
